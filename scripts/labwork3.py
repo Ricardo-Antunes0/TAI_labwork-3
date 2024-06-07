@@ -33,13 +33,21 @@ def main(music_file):
         db_signature = row[1]
         distance = cdn(file_signature, db_signature)
         musics[row[0]] = distance
-    conn.close()
     
-    for music, distance in musics.items():
-        print(f"{music}: {distance}")
-
     min_distance = min(musics.values())
-    print(f"The most similar music is {min(musics, key=musics.get)} with distance {min_distance}")
+    min_id = min(musics, key=musics.get)
+    print(f"The most similar music is {min_id} with distance {min_distance}")
+
+    # filename wirhout the path
+    filename = music_file.split("/")[-1] if "/" in music_file else music_file.split("\\")[-1]
+    cursor.execute("SELECT music_id FROM Sample WHERE name = ?", (filename,))
+    music_id = cursor.fetchone()[0]
+    if music_id and music_id == min_id:
+        print("Correct answer!")
+    else:
+        cursor.execute("SELECT name FROM Music WHERE id = ?", (music_id,))
+        correct_music = cursor.fetchone()[0]
+        print("Incorrect answer! The correct music is", correct_music)
 
     os.remove("temp.bin")
     
