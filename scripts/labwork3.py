@@ -28,15 +28,15 @@ def main(music_file):
     # for music in database extract the name and the signature
     conn = sqlite3.connect('../labwork3.db')
     cursor = conn.cursor()
-    cursor.execute("SELECT name, signature FROM Music")
+    cursor.execute("SELECT id, name, signature FROM Music")
     for row in cursor:
-        db_signature = row[1]
+        db_signature = row[2]
         distance = cdn(file_signature, db_signature)
-        musics[row[0]] = distance
+        musics[row[0]] = {"name": row[1], "distance": distance}
     
-    min_distance = min(musics.values())
-    min_id = min(musics, key=musics.get)
-    print(f"The most similar music is {min_id} with distance {min_distance}")
+    min_distance = min(musics.values(), key=lambda x: x["distance"])
+    min_id = min(musics, key=lambda x: musics[x]["distance"])
+    print(f"The most similar music is {min_distance['name']} with distance {min_distance['distance']}")
 
     # filename wirhout the path
     filename = music_file.split("/")[-1] if "/" in music_file else music_file.split("\\")[-1]
