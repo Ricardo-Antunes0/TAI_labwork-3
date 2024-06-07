@@ -12,7 +12,8 @@ cursor.execute('''
     CREATE TABLE IF NOT EXISTS Sample (
         id INTEGER PRIMARY KEY,
         name TEXT NOT NULL,
-        music_id INTEGER NOT NULL
+        music_id INTEGER NOT NULL,
+        FOREIGN KEY (music_id) REFERENCES Music(id)
     )
 ''')
 
