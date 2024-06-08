@@ -1,6 +1,6 @@
 import os
 import matplotlib.pyplot as plt
-from sklearn.metrics import f1_score
+from sklearn.metrics import f1_score, precision_score, recall_score, accuracy_score, confusion_matrix
 
 def main():
     
@@ -32,9 +32,9 @@ def main():
                     correct += 1
                 total += 1
         print(f"Compressor: {compressor}")
-        print(f"Accuracy: {correct/total}")
-        print(f"Precission: {correct/total}")
-        print(f"Recall: {correct/total}")
+        print(f"Accuracy: {accuracy_score(actual, predictated)}")
+        print(f"Precision: {precision_score(actual, predictated, average='macro', zero_division=0)}")
+        print(f"Recall: {recall_score(actual, predictated, average='macro')}")
         print(f"F1 Score: {f1_score(actual, predictated, average='macro')}")
         print(f"Correct: {correct}")
         print(f"Total: {total}")
@@ -56,9 +56,9 @@ def main():
                     correct += 1
                 total += 1
         print(f"Compressor: {compressor}")
-        print(f"Accuracy: {correct/total}")
-        print(f"Precission: {correct/total}")
-        print(f"Recall: {correct/total}")
+        print(f"Accuracy: {accuracy_score(actual, predictated)}")
+        print(f"Precision: {precision_score(actual, predictated, average='macro', zero_division=0)}")
+        print(f"Recall: {recall_score(actual, predictated, average='macro')}")
         print(f"F1 Score: {f1_score(actual, predictated, average='macro')}")
         print(f"Correct: {correct}")
         print(f"Total: {total}")
