@@ -10,8 +10,14 @@
 Inside the scripts directory, run the following command:
 
 ```bash
-python labwork3 labwork3.py [-h] [-c {gzip,bzip2,lzma}] [-o OUTPUT] music_file
+python labwork3.py [-h] [-c {gzip,bzip2,lzma}] [-o OUTPUT] music_file
 
+```
+
+Using an example from samples directory:
+
+```bash
+python labwork3.py -c bzip2 -o ../results/output.csv ../samples/clean/sample37.wav
 ```
 
 Note: the script will only work in Windows, as it uses the `GetMaxFreqs.exe` executable. To run the script in Linux, it is necessary to change the `GetMaxFreqs.exe` to `GetMaxFreqs` in the script.
