@@ -13,11 +13,11 @@ cursor.execute('''
     )
 ''')
 
-for file in os.listdir('../signatures/musics/'):
+for file in os.listdir('../signatures/'):
     if file.endswith('.bin'):
         # remove the .bin extension and the number in the beginning of the file name
         name = file[:-4].split('-', 1)[1]
-        signature = open('../signatures/musics/' + file, 'rb').read()
+        signature = open('../signatures/' + file, 'rb').read()
         cursor.execute('''
             INSERT INTO Music (name, signature)
             VALUES (?, ?)

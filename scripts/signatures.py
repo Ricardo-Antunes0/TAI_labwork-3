@@ -3,7 +3,7 @@ import os
 def main():
     os.chdir('../bin/')
     musics_dir = '../musics/'
-    signatures_dir = '../signatures/musics/'
+    signatures_dir = '../signatures/'
     for file in os.listdir(musics_dir):
         if file.endswith('.wav'):
             output_filename = signatures_dir + file[:-4] + '.bin'
